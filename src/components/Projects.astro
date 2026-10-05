@@ -2,79 +2,61 @@
 import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects")).sort(
-    (a, b) => a.data.order - b.data.order,
+  (a, b) => a.data.order - b.data.order
 );
 ---
-
 <section id="projects" class="projects" aria-labelledby="projects-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <ul>
-        {
-            projects.map((project) => (
-                <li>
-                    <div class="main">
-                        <h3>
-                            <a href={`/projects/${project.id}`}>
-                                {project.data.title}
-                            </a>
-                        </h3>
-                        <p class="tagline">{project.data.tagline}</p>
-                        <p>{project.data.summary}</p>
-                    </div>
-                    <p class="status">{project.data.status}</p>
-                </li>
-            ))
-        }
-    </ul>
+  <h2 id="projects-heading">Projects</h2>
+  <div class="accounts">
+    {projects.map((project) => (
+      <article class="account">
+        <div class="main">
+          <h3><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
+          <p class="tagline">{project.data.tagline}</p>
+          <p class="summary">{project.data.summary}</p>
+          <a class="more" href={`/projects/${project.id}`}>Read the case study</a>
+        </div>
+        <dl class="facts tabular">
+          <div><dt>Status</dt><dd>{project.data.status}</dd></div>
+          {project.data.facts.map((fact) => (
+            <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
+          ))}
+        </dl>
+      </article>
+    ))}
+  </div>
 </section>
 
 <style>
-    .projects {
-        max-width: 64rem;
-        margin: 0 auto;
-        padding: 2rem 1.25rem 4rem;
-    }
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        border-top: 3px double var(--ledger);
-    }
-    li {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 2rem;
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--rule);
-    }
-    h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.25rem;
-    }
-    h3 a {
-        color: var(--ink);
-        text-decoration-color: var(--rule);
-    }
-    h3 a:hover {
-        color: var(--ledger);
-    }
-    .tagline {
-        color: var(--ink-muted);
-        margin-bottom: 0.5rem;
-    }
-    .main p:last-child {
-        margin-bottom: 0;
-    }
-    .status {
-        font-size: 0.9rem;
-        color: var(--ledger);
-        white-space: nowrap;
-        margin: 0;
-    }
-    @media (max-width: 40rem) {
-        li {
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-        }
-    }
+  .projects { max-width: 64rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  .accounts { display: grid; gap: 1.5rem; }
+  .account {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 1.75rem 1.9rem;
+    background: var(--cover-raised);
+    border-top: 3px double var(--foil);
+  }
+  @media (max-width: 44rem) {
+    .account { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1.25rem; }
+  }
+
+  h3 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+  h3 a { color: var(--ink-strong); text-decoration: none; }
+  h3 a:hover { color: var(--ledger); }
+  .tagline { color: var(--ink-muted); margin-bottom: 0.75rem; }
+  .summary { margin-bottom: 1rem; }
+  .more { font-weight: 600; }
+
+  .facts { margin: 0; align-self: start; font-size: 0.95rem; }
+  .facts div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  dt { color: var(--ink-muted); }
+  dd { margin: 0; text-align: right; }
 </style>

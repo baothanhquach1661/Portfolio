@@ -1,0 +1,23 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <p>© {year} Bao Thanh Quach</p>
+  <p>Built with Astro</p>
+</footer>
+
+<style>
+  .site-footer {
+    width: min(61.5rem, calc(100% - 2.5rem));
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-top: 3px double var(--foil);
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+  p { margin: 0; }
+</style>

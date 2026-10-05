@@ -6,6 +6,11 @@ stack: ["C#", "ASP.NET Core MVC (.NET 10)", "EF Core", "Azure SQL", "xUnit", "Gi
 status: "Live on Azure"
 order: 1
 repo: "https://github.com/baothanhquach1661/NailToolInventory"
+facts:
+  - label: "Automated tests"
+    value: "10"
+  - label: "Transfer states"
+    value: "4"
 ---
 
 ## The problem

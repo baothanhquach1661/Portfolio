@@ -6,6 +6,11 @@ stack: ["C#", "ASP.NET Core MVC (.NET 10)", "EF Core", "PostgreSQL 17", "Docker"
 status: "V1 complete"
 order: 2
 repo: "https://github.com/baothanhquach1661/catlens"
+facts:
+  - label: "Review rules"
+    value: "3"
+  - label: "Database"
+    value: "PostgreSQL in Docker"
 ---
 
 ## The problem
