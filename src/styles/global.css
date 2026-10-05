@@ -1,0 +1,87 @@
+:root {
+    --paper: #F5F7FA;
+    --ink: #172233;
+    --ink-muted: #5A6475;
+    --ledger: #1F4E8C;
+    --rule: #C9D6E8;
+    --correction: #B23A3A;
+    --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+    --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #0F1724;
+        --ink: #E4EAF2;
+        --ink-muted: #9AA7B8;
+        --ledger: #7FA8E0;
+        --rule: #2A3A52;
+        --correction: #E07A7A;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light dark;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 0.5em;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 0 0 1em;
+    max-width: var(--measure);
+}
+
+a {
+    color: var(--ledger);
+    text-underline-offset: 0.15em;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--ledger);
+    outline-offset: 3px;
+}
+
+.tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

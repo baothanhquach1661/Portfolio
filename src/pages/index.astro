@@ -1,17 +1,26 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+	title="Bao Thanh Quach — Inventory & ERP Systems Developer"
+	description="Developer building inventory and ERP-style business applications for e-commerce and distribution businesses."
+>
+	<main>
+		<h1>Inventory you can trust, from receiving to reorder.</h1>
+		<p>
+			I build inventory and ERP-style business applications — stock
+			tracking, receipts and transfers, reorder planning, and the reports
+			managers rely on.
+		</p>
+		<p><a href="#projects">View projects</a></p>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 4rem 1.25rem;
+	}
+</style>
