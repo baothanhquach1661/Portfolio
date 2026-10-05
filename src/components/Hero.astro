@@ -1,5 +1,5 @@
 <section class="hero">
-  <div class="container">
+  <div class="intro">
     <h1>Inventory you can trust, from receiving to reorder.</h1>
     <p class="lede">
       I build inventory and ERP-style business applications — stock tracking,
@@ -8,74 +8,109 @@
       build for how operations actually work. Based in Orange County, CA.
     </p>
     <div class="actions">
-      <a class="btn btn-primary" href="#projects">View projects</a>
-      <a class="btn" href="/Bao_Thanh_Quach_Resume.pdf">Download resume</a>
+      <a class="button primary" href="#projects">View projects</a>
+      <a class="button" href="/Bao_Thanh_Quach_Resume.pdf">Download resume</a>
     </div>
-
-    <figure class="panel compare">
-      <figcaption class="panel-head">
-        <span>stock_check · A-001 A-shape nipper · North warehouse</span>
-        <span class="example">example</span>
-      </figcaption>
-      <div class="columns">
-        <div class="col">
-          <p class="col-title mono">Spreadsheet</p>
-          <ul class="rows mono tabular">
-            <li><span>On hand</span><span>30</span></li>
-            <li><span>Last edited</span><span class="muted">unknown</span></li>
-            <li><span>Edited by</span><span class="muted">unknown</span></li>
-            <li class="result"><span><span class="dot err" aria-hidden="true"></span>Shelf count 27, 3 units unexplained</span></li>
-          </ul>
-        </div>
-        <div class="col">
-          <p class="col-title mono">Ledger</p>
-          <ul class="rows mono tabular posting">
-            <li><span><span class="dot on" aria-hidden="true"></span>Received</span><span>+40 → 40</span></li>
-            <li><span><span class="dot on" aria-hidden="true"></span>Transfer to South</span><span>−12 → 28</span></li>
-            <li><span><span class="dot on" aria-hidden="true"></span>Count adjustment</span><span>−1 → 27</span></li>
-            <li class="result"><span><span class="dot on" aria-hidden="true"></span>Matches shelf count</span><span>27</span></li>
-          </ul>
-        </div>
-      </div>
-    </figure>
   </div>
+
+  <figure class="sheet">
+    <table class="tabular">
+      <caption>
+        <span class="sku">A-001 A-shape nipper</span>
+        <span class="location">North warehouse</span>
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Movement</th>
+          <th scope="col">Qty</th>
+          <th scope="col">On hand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Received</td><td>+40</td><td>40</td></tr>
+        <tr><td>Transfer to South</td><td>−12</td><td>28</td></tr>
+        <tr><td>Count adjustment</td><td class="correction">−1</td><td>27</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><span class="check">✓</span> Matches shelf count</td>
+          <td></td>
+          <td>27</td>
+        </tr>
+      </tfoot>
+    </table>
+    <figcaption>Every number traces back to the movements behind it.</figcaption>
+  </figure>
 </section>
 
 <style>
-  .hero { padding: 96px 0 var(--section-gap); }
-  h1 { max-width: 15ch; }
-  .lede { font-size: 18px; line-height: 1.56; color: var(--color-silver); max-width: 60ch; }
-  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 56px; }
-
-  .compare { margin: 0; }
-  .example { font-size: 12px; color: var(--color-fog); }
-  .columns { display: grid; grid-template-columns: 1fr 1fr; }
-  .col { padding: 20px; }
-  .col + .col { border-left: 1px solid var(--color-iron); }
-  .col-title { margin: 0 0 12px; font-size: 14px; color: var(--color-fog); }
-  .rows { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.43; }
-  .rows li {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 9px 0;
-    border-bottom: 1px solid var(--color-iron);
-    color: var(--color-ash);
+  .hero {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 4rem 1.25rem 6rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: center;
   }
-  .rows li:last-child { border-bottom: 0; }
-  .rows .result { color: var(--color-chalk); }
-  .muted { color: var(--color-fog); }
-
-  @keyframes post { from { opacity: 0; } }
-  .posting li { animation: post 0.45s ease-out both; }
-  .posting li:nth-child(1) { animation-delay: 0.3s; }
-  .posting li:nth-child(2) { animation-delay: 0.65s; }
-  .posting li:nth-child(3) { animation-delay: 1s; }
-  .posting li:nth-child(4) { animation-delay: 1.45s; }
-
-  @media (max-width: 45rem) {
-    .hero { padding-top: 56px; }
-    .columns { grid-template-columns: 1fr; }
-    .col + .col { border-left: 0; border-top: 1px solid var(--color-iron); }
+  @media (max-width: 52rem) {
+    .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 2rem; }
   }
+
+  .lede { color: var(--ink-muted); }
+
+  .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+  .button {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--ledger);
+    border-radius: 6px;
+    color: var(--ledger);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .button:hover { background: var(--cover-raised); }
+  .button.primary { background: var(--ledger); color: var(--cover); }
+  .button.primary:hover { background: var(--ink); border-color: var(--ink); }
+
+  .sheet {
+    margin: 0;
+    padding: 1.5rem 1.6rem 1.25rem;
+    background: var(--paper);
+    color: var(--paper-ink);
+    border-radius: 3px;
+    transform: rotate(-1.2deg);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  caption { text-align: left; padding-bottom: 0.9rem; }
+  .sku { font-family: var(--font-serif); font-weight: 600; font-size: 1.05rem; }
+  .location { display: block; color: var(--paper-muted); font-size: 0.85rem; }
+
+  th, td {
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--paper-rule);
+    text-align: right;
+  }
+  th:first-child, td:first-child { padding-left: 0; text-align: left; }
+  th:last-child, td:last-child { padding-right: 0; }
+  th + th, td + td { border-left: 1px solid var(--paper-margin); }
+  th { font-weight: 400; font-size: 0.85rem; color: var(--paper-muted); }
+
+  tbody tr:last-child td { border-bottom: 0; }
+  tfoot td { border-top: 3px double var(--paper-ledger); border-bottom: 0; font-weight: 600; }
+  .correction { color: var(--correction); }
+  .check { color: var(--paper-ledger); }
+
+  figcaption { margin-top: 0.9rem; font-size: 0.85rem; color: var(--paper-muted); }
+
+  @keyframes post {
+    from { opacity: 0; }
+  }
+  tbody tr, tfoot tr { animation: post 0.5s ease-out both; }
+  tbody tr:nth-child(1) { animation-delay: 0.3s; }
+  tbody tr:nth-child(2) { animation-delay: 0.7s; }
+  tbody tr:nth-child(3) { animation-delay: 1.1s; }
+  tfoot tr { animation-delay: 1.6s; }
 </style>

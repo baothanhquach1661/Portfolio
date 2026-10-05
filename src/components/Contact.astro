@@ -38,38 +38,23 @@
 
 <style>
     .contact {
-        width: min(var(--page-max-width), calc(100% - 48px));
+        max-width: 64rem;
         margin: 0 auto;
-        padding: var(--section-gap) 0;
-        border-top: 1px solid var(--color-basalt);
-    }
-    .contact p {
-        color: var(--color-silver);
-        font-size: 18px;
-        line-height: 1.56;
+        padding: 2rem 1.25rem 5rem;
     }
     dl {
-        margin: 32px 0 0;
-        background: var(--color-graphite);
-        border: 1px solid var(--color-basalt);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-subtle);
+        margin: 1.5rem 0 0;
+        border-top: 3px double var(--ledger);
     }
     dl div {
         display: grid;
         grid-template-columns: 10rem minmax(0, 1fr);
-        gap: 24px;
-        padding: 14px 20px;
-        border-bottom: 1px solid var(--color-iron);
-    }
-    dl div:last-child {
-        border-bottom: 0;
+        gap: 2rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--rule);
     }
     dt {
-        font-family: var(--font-mono);
-        font-size: 14px;
-        color: var(--color-fog);
-        letter-spacing: normal;
+        color: var(--ink-muted);
     }
     dd {
         margin: 0;
@@ -78,7 +63,7 @@
     @media (max-width: 40rem) {
         dl div {
             grid-template-columns: 1fr;
-            gap: 2px;
+            gap: 0.15rem;
         }
     }
 </style>

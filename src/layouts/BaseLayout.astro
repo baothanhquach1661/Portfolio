@@ -1,9 +1,8 @@
 ---
-import "@fontsource-variable/red-hat-display";
-import "@fontsource-variable/red-hat-text";
-import "@fontsource-variable/red-hat-mono";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-serif/600.css";
 import "../styles/global.css";
-import Banner from "../components/Banner.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -19,13 +18,12 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#04040b" />
+    <meta name="theme-color" content="#0F1E33" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <Banner />
     <Header />
     <slot />
     <Footer />
