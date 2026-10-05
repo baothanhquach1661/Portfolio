@@ -1,25 +1,51 @@
 :root {
-  --cover: #0F1E33;
-  --cover-raised: #142A47;
-  --rule: #24406A;
-  --foil: #8FA3BF;
-  --ink: #E6EDF7;
-  --ink-strong: #F2F6FC;
-  --ink-muted: #9FB2CC;
-  --ledger: #7DB0FF;
-  --margin-red: #C25B5B;
+  --color-signal-green: #71d083;
+  --color-led-green: #366740;
+  --color-moss-border: #2d5736;
+  --color-forest-wash: #1d3a24;
+  --color-fern-ground: #1b2a1e;
+  --color-link-blue: #70b8ff;
+  --color-lilac-accent: #baa7ff;
+  --color-plum-edge: #291f43;
+  --color-iris-border: #473876;
+  --color-lavender-mist: #e2ddfe;
+  --color-carbon: #04040b;
+  --color-graphite: #121113;
+  --color-obsidian: #1a191b;
+  --color-slate: #232225;
+  --color-basalt: #2b292d;
+  --color-iron: #323035;
+  --color-pewter: #3c393f;
+  --color-steel: #49474e;
+  --color-fog: #7c7a85;
+  --color-silver: #b5b2bc;
+  --color-ash: #eeeef0;
+  --color-chalk: #e5e5e5;
+  --color-error: #e5484d;
 
-  --paper: #F4F7FB;
-  --paper-ink: #172233;
-  --paper-muted: #5A6475;
-  --paper-rule: #C9D6E8;
-  --paper-margin: #E3A0A0;
-  --paper-ledger: #1F4E8C;
-  --correction: #B23A3A;
+  --font-display: "Red Hat Display Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-text: "Red Hat Text Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "Red Hat Mono Variable", "JetBrains Mono", ui-monospace, Menlo, monospace;
 
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-serif: "IBM Plex Serif", Georgia, serif;
+  --tracking-display: -0.025em;
+  --tracking-body: 0.025em;
+
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --shadow-subtle: rgba(255, 255, 255, 0.06) 0px 1px 0px 0px inset;
+
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 24px;
   --measure: 68ch;
+
+  /* Older names kept so files from the previous design still work */
+  --ink: var(--color-ash);
+  --ink-strong: var(--color-chalk);
+  --ink-muted: var(--color-fog);
+  --rule: var(--color-basalt);
+  --foil: var(--color-basalt);
+  --ledger: var(--color-link-blue);
 
   color-scheme: dark;
 }
@@ -28,39 +54,103 @@
 
 body {
   margin: 0;
-  background: var(--cover);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  background: var(--color-carbon);
+  color: var(--color-ash);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: var(--tracking-body);
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
   margin: 0 0 0.5em;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--ink-strong);
+  font-family: var(--font-display);
+  color: var(--color-chalk);
 }
-
-h1 { font-size: clamp(2.25rem, 4.6vw, 3.2rem); letter-spacing: -0.01em; }
-h2 { font-size: 1.75rem; }
+h1 { font-size: clamp(2.5rem, 6vw, 3.75rem); font-weight: 700; line-height: 1; letter-spacing: var(--tracking-display); }
+h2 { font-size: clamp(1.9rem, 4vw, 2.25rem); font-weight: 600; line-height: 1.11; letter-spacing: var(--tracking-display); }
+h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; letter-spacing: 0; }
 
 p { margin: 0 0 1em; max-width: var(--measure); }
 
-a { color: var(--ledger); text-underline-offset: 0.18em; }
-a:focus-visible { outline: 2px solid var(--ledger); outline-offset: 3px; }
+a { color: var(--color-link-blue); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--color-link-blue); outline-offset: 3px; border-radius: var(--radius-sm); }
 
-::selection { background: var(--ledger); color: var(--cover); }
+::selection { background: var(--color-forest-wash); color: var(--color-chalk); }
 
+.mono { font-family: var(--font-mono); letter-spacing: normal; }
 .tabular { font-variant-numeric: tabular-nums; }
 
-.prose h2 { margin-top: 2.25rem; font-size: 1.5rem; }
+.container { width: min(var(--page-max-width), calc(100% - 48px)); margin: 0 auto; }
+.section { padding: var(--section-gap) 0; border-top: 1px solid var(--color-basalt); }
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-body);
+  text-decoration: none;
+  border: 1px solid var(--color-basalt);
+  color: var(--color-ash);
+}
+.btn:hover { text-decoration: none; border-color: var(--color-pewter); }
+.btn-primary { background: var(--color-signal-green); border-color: var(--color-led-green); color: var(--color-carbon); }
+.btn-primary:hover { border-color: var(--color-signal-green); filter: brightness(1.06); }
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-body);
+  color: var(--color-fog);
+}
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--color-fog); vertical-align: 1px; margin-right: 8px; }
+.dot.on { background: var(--color-signal-green); }
+.dot.err { background: var(--color-error); }
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid var(--color-plum-edge);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-body);
+  color: var(--color-lavender-mist);
+}
+
+.panel {
+  background: var(--color-graphite);
+  border: 1px solid var(--color-basalt);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--color-obsidian);
+  border-bottom: 1px solid var(--color-basalt);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-silver);
+}
+
+.prose { font-size: 16px; line-height: 1.63; }
+.prose h2 { margin-top: 2.5rem; font-size: 1.75rem; }
 .prose ul { padding-left: 1.25rem; }
-.prose li { margin-bottom: 0.4rem; max-width: var(--measure); }
-.prose strong { color: var(--ink-strong); }
-.prose em { color: var(--ink-muted); }
+.prose li { margin-bottom: 0.5rem; max-width: var(--measure); }
+.prose li::marker { color: var(--color-steel); }
+.prose strong { color: var(--color-chalk); font-weight: 600; }
+.prose em { color: var(--color-fog); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

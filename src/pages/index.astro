@@ -1,19 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import Capabilities from "../components/Capabilities.astro";
 import Projects from "../components/Projects.astro";
+import Stack from "../components/Stack.astro";
 import Experience from "../components/Experience.astro";
 import Contact from "../components/Contact.astro";
 ---
-
 <BaseLayout
-	title="Bao Thanh Quach — Inventory & ERP Systems Developer"
-	description="Developer building inventory and ERP-style business applications for e-commerce and distribution businesses."
+  title="Bao Thanh Quach — Inventory & ERP Systems Developer"
+  description="Developer building inventory and ERP-style business applications for e-commerce and distribution businesses."
 >
-	<main>
-		<Hero />
-		<Projects />
-		<Experience />
-		<Contact />
-	</main>
+  <main>
+    <Hero />
+    <Capabilities />
+    <Projects />
+    <Stack />
+    <Experience />
+    <Contact />
+  </main>
 </BaseLayout>

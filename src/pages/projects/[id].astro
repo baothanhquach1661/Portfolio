@@ -3,60 +3,55 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-    const projects = await getCollection("projects");
-    return projects.map((project) => ({
-        params: { id: project.id },
-        props: { project },
-    }));
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
 }
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+const live = project.data.status.toLowerCase().startsWith("live");
 ---
-
-<BaseLayout
-    title={`${project.data.title} — Bao Thanh Quach`}
-    description={project.data.summary}
->
-    <main class="case-study">
-        <p class="back"><a href="/#projects">All projects</a></p>
-        <h1>{project.data.title}</h1>
-        <p class="tagline">{project.data.tagline}</p>
-        <p class="stack">{project.data.stack.join(", ")}</p>
-        <p class="meta">
-            <span>{project.data.status}</span>
-            <a href={project.data.repo}>Source code on GitHub</a>
-        </p>
-        <article class="prose">
-            <Content />
-        </article>
-    </main>
+<BaseLayout title={`${project.data.title} — Bao Thanh Quach`} description={project.data.summary}>
+  <main class="case-study">
+    <p class="back"><a href="/#projects">← All projects</a></p>
+    <p class="label"><span class:list={["dot", { on: live }]} aria-hidden="true"></span>{project.data.status}</p>
+    <h1>{project.data.title}</h1>
+    <p class="tagline">{project.data.tagline}</p>
+    <ul class="tags" aria-label="Stack">
+      {project.data.stack.map((item) => <li class="tag">{item}</li>)}
+    </ul>
+    <dl class="facts mono tabular">
+      {project.data.facts.map((fact) => (
+        <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
+      ))}
+      <div><dt>Source</dt><dd><a href={project.data.repo}>GitHub →</a></dd></div>
+    </dl>
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
 </BaseLayout>
 
 <style>
-    .case-study {
-        max-width: 44rem;
-        margin: 0 auto;
-        padding: 2rem 1.25rem 4rem;
-    }
-    .back {
-        font-size: 0.9rem;
-    }
-    .tagline {
-        font-size: 1.25rem;
-        color: var(--ink-muted);
-        margin-bottom: 0.5rem;
-    }
-    .stack {
-        font-size: 0.9rem;
-        color: var(--ink-muted);
-    }
-    .meta {
-        display: flex;
-        gap: 1.5rem;
-        font-size: 0.9rem;
-        padding-bottom: 1.5rem;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid var(--rule);
-    }
+  .case-study { width: min(46rem, calc(100% - 48px)); margin: 0 auto; padding: 48px 0 96px; }
+  .back { font-size: 14px; margin-bottom: 40px; }
+  .label { margin-bottom: 16px; }
+  h1 { font-size: clamp(2.25rem, 5vw, 3rem); line-height: 1.11; }
+  .tagline { font-size: 18px; color: var(--color-silver); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 24px 0; padding: 0; }
+  .facts {
+    margin: 0 0 16px;
+    background: var(--color-graphite);
+    border: 1px solid var(--color-basalt);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-subtle);
+    font-size: 14px;
+  }
+  .facts div { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--color-iron); }
+  .facts div:last-child { border-bottom: 0; }
+  dt { color: var(--color-fog); }
+  dd { margin: 0; }
 </style>

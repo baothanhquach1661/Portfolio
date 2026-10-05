@@ -5,58 +5,54 @@ const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order
 );
 ---
-<section id="projects" class="projects" aria-labelledby="projects-heading">
-  <h2 id="projects-heading">Projects</h2>
-  <div class="accounts">
-    {projects.map((project) => (
-      <article class="account">
-        <div class="main">
+<section id="projects" class="section" aria-labelledby="projects-heading">
+  <div class="container">
+    <h2 id="projects-heading">Projects</h2>
+    <div class="grid">
+      {projects.map((project, i) => (
+        <article class:list={["card", { featured: i === 0 }]}>
+          <p class="label status"><span class:list={["dot", { on: project.data.status.toLowerCase().startsWith("live") }]} aria-hidden="true"></span>{project.data.status}</p>
           <h3><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
           <p class="tagline">{project.data.tagline}</p>
           <p class="summary">{project.data.summary}</p>
-          <a class="more" href={`/projects/${project.id}`}>Read the case study</a>
-        </div>
-        <dl class="facts tabular">
-          <div><dt>Status</dt><dd>{project.data.status}</dd></div>
-          {project.data.facts.map((fact) => (
-            <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
-          ))}
-        </dl>
-      </article>
-    ))}
+          <dl class="facts mono tabular">
+            {project.data.facts.map((fact) => (
+              <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>
+            ))}
+          </dl>
+          <ul class="tags" aria-label="Stack">
+            {project.data.stack.map((item) => <li class="tag">{item}</li>)}
+          </ul>
+          <a class="more" href={`/projects/${project.id}`}>Read the case study →</a>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-  .projects { max-width: 64rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-  .accounts { display: grid; gap: 1.5rem; }
-  .account {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: 2.5rem;
-    padding: 1.75rem 1.9rem;
-    background: var(--cover-raised);
-    border-top: 3px double var(--foil);
-  }
-  @media (max-width: 44rem) {
-    .account { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1.25rem; }
-  }
-
-  h3 { font-size: 1.4rem; margin-bottom: 0.2rem; }
-  h3 a { color: var(--ink-strong); text-decoration: none; }
-  h3 a:hover { color: var(--ledger); }
-  .tagline { color: var(--ink-muted); margin-bottom: 0.75rem; }
-  .summary { margin-bottom: 1rem; }
-  .more { font-weight: 600; }
-
-  .facts { margin: 0; align-self: start; font-size: 0.95rem; }
-  .facts div {
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-top: 32px; }
+  @media (max-width: 26rem) { .grid { grid-template-columns: 1fr; } }
+  .card {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--rule);
+    flex-direction: column;
+    padding: var(--card-padding);
+    background: var(--color-graphite);
+    border: 1px solid var(--color-basalt);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-subtle);
   }
-  dt { color: var(--ink-muted); }
-  dd { margin: 0; text-align: right; }
+  .card.featured { border-color: var(--color-moss-border); }
+  .status { margin-bottom: 14px; }
+  h3 { margin-bottom: 4px; }
+  h3 a { color: var(--color-chalk); }
+  .tagline { margin-bottom: 12px; font-size: 14px; color: var(--color-fog); }
+  .summary { font-size: 15px; color: var(--color-silver); }
+  .facts { margin: 4px 0 20px; font-size: 14px; }
+  .facts div { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--color-iron); }
+  .facts div:first-child { border-top: 1px solid var(--color-iron); }
+  dt { color: var(--color-fog); }
+  dd { margin: 0; color: var(--color-ash); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0 0 20px; padding: 0; }
+  .more { margin-top: auto; font-size: 15px; font-weight: 500; }
 </style>

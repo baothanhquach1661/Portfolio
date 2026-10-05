@@ -1,0 +1,50 @@
+---
+const items = [
+  {
+    label: "Inventory control",
+    title: "Stock you can trace",
+    body: "On-hand, reserved, and available quantities per location, transfers with clear states, and an audit trail of every movement.",
+    featured: true,
+  },
+  {
+    label: "Product data",
+    title: "Catalog data you can rely on",
+    body: "Imports that validate before they write, and reviews that surface missing and duplicate SKUs before they turn into bad counts.",
+  },
+  {
+    label: "Delivery",
+    title: "Changes that ship safely",
+    body: "Automated tests on every pull request, secretless deploys to Azure, health checks, and automatic rollback when a release fails.",
+  },
+];
+---
+<section class="section" aria-labelledby="build-heading">
+  <div class="container">
+    <h2 id="build-heading">What I build</h2>
+    <div class="grid">
+      {items.map((item) => (
+        <article class:list={["card", { featured: item.featured }]}>
+          <p class="label">{item.label}</p>
+          <h3>{item.title}</h3>
+          <p class="body">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+  .card {
+    padding: var(--card-padding);
+    background: var(--color-graphite);
+    border: 1px solid var(--color-basalt);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-subtle);
+  }
+  .card.featured { border-color: var(--color-moss-border); }
+  .card.featured .label { color: var(--color-signal-green); }
+  .label { margin-bottom: 12px; }
+  h3 { margin-bottom: 8px; }
+  .body { margin: 0; font-size: 15px; line-height: 1.5; color: var(--color-silver); }
+</style>
