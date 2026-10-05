@@ -1,0 +1,88 @@
+---
+import { experience } from "../data/experience";
+---
+
+<section
+    id="experience"
+    class="experience"
+    aria-labelledby="experience-heading"
+>
+    <h2 id="experience-heading">Experience</h2>
+    <ul class="jobs">
+        {
+            experience.map((job) => (
+                <li class="job">
+                    <p class="dates tabular">
+                        {job.start} – {job.end}
+                    </p>
+                    <div>
+                        <h3>
+                            {job.company}
+                            <span class="location">{job.location}</span>
+                        </h3>
+                        <p class="role">{job.role}</p>
+                        <ul class="points">
+                            {job.points.map((point) => (
+                                <li>{point}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<style>
+    .experience {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+    }
+    .jobs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 3px double var(--ledger);
+    }
+    .job {
+        display: grid;
+        grid-template-columns: 10rem minmax(0, 1fr);
+        gap: 2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .dates {
+        margin: 0;
+        padding-top: 0.2rem;
+        font-size: 0.9rem;
+        color: var(--ink-muted);
+    }
+    h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.15rem;
+    }
+    .location {
+        margin-left: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--ink-muted);
+    }
+    .role {
+        margin-bottom: 0.5rem;
+    }
+    .points {
+        margin: 0;
+        padding-left: 1.25rem;
+    }
+    .points li {
+        margin-bottom: 0.3rem;
+        max-width: var(--measure);
+    }
+    @media (max-width: 40rem) {
+        .job {
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+        }
+    }
+</style>

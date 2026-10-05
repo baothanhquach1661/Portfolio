@@ -1,5 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <BaseLayout
@@ -7,20 +11,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="Developer building inventory and ERP-style business applications for e-commerce and distribution businesses."
 >
 	<main>
-		<h1>Inventory you can trust, from receiving to reorder.</h1>
-		<p>
-			I build inventory and ERP-style business applications — stock
-			tracking, receipts and transfers, reorder planning, and the reports
-			managers rely on.
-		</p>
-		<p><a href="#projects">View projects</a></p>
+		<Hero />
+		<Projects />
+		<Experience />
+		<Contact />
 	</main>
 </BaseLayout>
-
-<style>
-	main {
-		max-width: 64rem;
-		margin: 0 auto;
-		padding: 4rem 1.25rem;
-	}
-</style>

@@ -1,0 +1,44 @@
+---
+const links = [
+    { href: "/#projects", label: "Projects" },
+    { href: "/#experience", label: "Experience" },
+    { href: "/#contact", label: "Contact" },
+];
+---
+
+<header class="site-header">
+    <a class="name" href="/">Bao Thanh Quach</a>
+    <nav aria-label="Main">
+        {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+</header>
+
+<style>
+    .site-header {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .name {
+        color: var(--ink);
+        font-weight: 600;
+        text-decoration: none;
+    }
+    nav {
+        display: flex;
+        gap: 1.25rem;
+    }
+    nav a {
+        color: var(--ink-muted);
+        text-decoration: none;
+    }
+    nav a:hover {
+        color: var(--ledger);
+        text-decoration: underline;
+    }
+</style>

@@ -1,0 +1,142 @@
+<section class="hero">
+    <div class="intro">
+        <h1>Inventory you can trust, from receiving to reorder.</h1>
+        <p>
+            I build inventory and ERP-style business applications — stock
+            tracking, receipts and transfers, reorder planning, and the reports
+            managers rely on. I've managed inventory and catalogs for real
+            e-commerce businesses, so I build for how operations actually work.
+            Based in Orange County, CA.
+        </p>
+        <div class="actions">
+            <a class="button primary" href="#projects">View projects</a>
+            <a class="button" href="/Bao_Thanh_Quach_Resume.pdf"
+                >Download resume</a
+            >
+        </div>
+    </div>
+
+    <figure class="ledger">
+        <table class="tabular">
+            <caption>
+                <span class="sku">A-001 A-shape nipper</span>
+                <span class="location">North warehouse</span>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Movement</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">On hand</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Received</td><td>+40</td><td>40</td></tr>
+                <tr><td>Transfer to South</td><td>−12</td><td>28</td></tr>
+                <tr
+                    ><td>Count adjustment</td><td class="correction">−1</td><td
+                        >27</td
+                    ></tr
+                >
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><span class="check">✓</span> Matches shelf count</td>
+                    <td></td>
+                    <td>27</td>
+                </tr>
+            </tfoot>
+        </table>
+        <figcaption>
+            Every number traces back to the movements behind it.
+        </figcaption>
+    </figure>
+</section>
+
+<style>
+    .hero {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 3rem 1.25rem 4rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 3rem;
+        align-items: center;
+    }
+    @media (max-width: 48rem) {
+        .hero {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+    }
+    .button {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        border: 1px solid var(--ledger);
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .button.primary {
+        background: var(--ledger);
+        color: var(--paper);
+    }
+
+    .ledger {
+        margin: 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+    }
+    caption {
+        text-align: left;
+        padding-bottom: 0.75rem;
+    }
+    .sku {
+        font-weight: 600;
+    }
+    .location {
+        display: block;
+        color: var(--ink-muted);
+        font-size: 0.875rem;
+    }
+    th,
+    td {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--rule);
+        text-align: right;
+    }
+    th:first-child,
+    td:first-child {
+        text-align: left;
+    }
+    th {
+        font-weight: 400;
+        color: var(--ink-muted);
+        font-size: 0.875rem;
+    }
+    tfoot td {
+        border-bottom: 0;
+        border-top: 3px double var(--ledger);
+        font-weight: 600;
+    }
+    .correction {
+        color: var(--correction);
+    }
+    .check {
+        color: var(--ledger);
+    }
+    figcaption {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+    }
+</style>

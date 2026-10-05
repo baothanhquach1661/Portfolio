@@ -85,3 +85,20 @@ a:focus-visible {
         transition: none !important;
     }
 }
+
+.prose h2 {
+    margin-top: 2.25rem;
+}
+
+.prose ul {
+    padding-left: 1.25rem;
+}
+
+.prose li {
+    margin-bottom: 0.4rem;
+    max-width: var(--measure);
+}
+
+.prose em {
+    color: var(--ink-muted);
+}

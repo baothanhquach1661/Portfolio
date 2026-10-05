@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section id="projects" class="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <ul>
+        {
+            projects.map((project) => (
+                <li>
+                    <div class="main">
+                        <h3>
+                            <a href={`/projects/${project.id}`}>
+                                {project.data.title}
+                            </a>
+                        </h3>
+                        <p class="tagline">{project.data.tagline}</p>
+                        <p>{project.data.summary}</p>
+                    </div>
+                    <p class="status">{project.data.status}</p>
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<style>
+    .projects {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 3px double var(--ledger);
+    }
+    li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+    h3 a {
+        color: var(--ink);
+        text-decoration-color: var(--rule);
+    }
+    h3 a:hover {
+        color: var(--ledger);
+    }
+    .tagline {
+        color: var(--ink-muted);
+        margin-bottom: 0.5rem;
+    }
+    .main p:last-child {
+        margin-bottom: 0;
+    }
+    .status {
+        font-size: 0.9rem;
+        color: var(--ledger);
+        white-space: nowrap;
+        margin: 0;
+    }
+    @media (max-width: 40rem) {
+        li {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+</style>

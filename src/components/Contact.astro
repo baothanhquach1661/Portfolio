@@ -1,0 +1,63 @@
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <p>
+        Open to developer roles in inventory, ERP, and operations systems in
+        Southern California. Email is the best way to reach me.
+    </p>
+    <dl>
+        <div>
+            <dt>Email</dt>
+            <dd>
+                <a href="mailto:baothanhquach1661@gmail.com"
+                    >baothanhquach1661@gmail.com</a>
+            </dd>
+        </div>
+        <div>
+            <dt>GitHub</dt>
+            <dd>
+                <a href="https://github.com/baothanhquach1661"
+                    >github.com/baothanhquach1661</a>
+            </dd>
+        </div>
+        <div>
+            <dt>LinkedIn</dt>
+            <dd><a href="LINKEDIN_URL">LinkedIn profile</a></dd>
+        </div>
+        <div>
+            <dt>Resume</dt>
+            <dd><a href="/Bao_Thanh_Quach_Resume.pdf">Download PDF</a></dd>
+        </div>
+    </dl>
+</section>
+
+<style>
+    .contact {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 5rem;
+    }
+    dl {
+        margin: 1.5rem 0 0;
+        border-top: 3px double var(--ledger);
+    }
+    dl div {
+        display: grid;
+        grid-template-columns: 10rem minmax(0, 1fr);
+        gap: 2rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    dt {
+        color: var(--ink-muted);
+    }
+    dd {
+        margin: 0;
+        overflow-wrap: anywhere;
+    }
+    @media (max-width: 40rem) {
+        dl div {
+            grid-template-columns: 1fr;
+            gap: 0.15rem;
+        }
+    }
+</style>
